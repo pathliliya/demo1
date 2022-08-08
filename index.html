@@ -1,0 +1,2170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="description" content="">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>北京邮电大学</title>
+		<meta name="keywords" content="北京邮电大学">
+		<link href="./css/style.css" rel="stylesheet" type="text/css">
+		<link href="./css/mystyle.css" rel="stylesheet">
+		<link href="./css/swiper.min.css" rel="stylesheet">
+		<link href="./css/slick.css" rel="stylesheet">
+		<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+		<script type="text/javascript" src="./js/bdtxkmin.js"></script>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			a {
+				text-decoration: none;
+			}
+
+			li {
+				list-style: none;
+			}
+
+			#banner {
+				position: relative;
+				width: 100%;
+			}
+
+			#banner .banner_img {
+				position: relative;
+				width: 400%;
+				height: 537px;
+				overflow: hidden;
+			}
+
+			#banner .banner_img .banner_ul {
+				position: relative;
+				height: 537px;
+				overflow: hidden;
+			}
+
+			#banner .banner_img .banner_ul li {
+
+				height: 537px;
+				float: left;
+				left: 100%;
+				width: 25%;
+			}
+
+			#banner .banner_img .banner_ul img {
+				width: 100%;
+				height: 537px;
+			}
+
+			#banner .banner-span {
+				position: absolute;
+				bottom: 10px;
+				left: 50%;
+
+			}
+
+			#banner .banner-span span {
+				width: 10px;
+				float: left;
+				height: 10px;
+				border-radius: 50%;
+				border: 1px solid black;
+				margin-right: 15px;
+				bottom: 10px;
+				left: 45%;
+				cursor: pointer;
+			}
+
+			#banner .banner-span .span_point {
+				background: gray;
+			}
+
+			#banner .banner_a {
+				position: absolute;
+				top: 50%;
+				width: 100%;
+				height: 40px;
+				margin: 0 10px;
+				font-size: 30px;
+			}
+
+			#banner .banner_a .banner_prev {
+				position: absolute;
+				left: 10px;
+				background: gray;
+				cursor: pointer;
+				opacity: 0.5;
+			}
+
+			#banner .banner_a .banner_next {
+				position: absolute;
+				right: 30px;
+				background: gray;
+				cursor: pointer;
+				opacity: 0.5;
+			}
+		</style>
+
+		<script>
+			$(function() {
+				var timer = setInterval(autoPlay, 4000);
+				var iNow = 0;
+				var iX = $(".banner_ul li").width();
+				var iL = $(".banner_ul").children();
+
+				console.log(iL.length);
+				//自动播放
+				function autoPlay() {
+					iNow++;
+					if (iNow >= iL.length) {
+						$(".banner_ul").css('left', 0);
+						iNow = 0;
+					}
+					$(".banner_ul").animate({
+						left: -iX * iNow
+					}, 2000);
+					$(".banner-span span").removeClass("span_point");
+					$(".banner-span span").eq(iNow).addClass("span_point");
+				}
+				//鼠标移动事件  //清除定时器
+				$(".banner").hover(function() {
+					clearInterval(timer);
+					$(".banner_prev").show();
+					$(".banner_next").show();
+				}, function() {
+					timer = setInterval(autoPlay, 2000);
+					$(".banner_prev").hide();
+					$(".banner_next").hide();
+				})
+
+
+				//鼠标点击事件（左右）
+				//右点击
+				$(".banner_next").click(function() {
+					clearInterval(timer);
+					iNow++;
+					if (iNow >= iL.length) {
+						$(".banner_ul").css('left', '0');
+						iNow = 0;
+					}
+					$(".banner_ul").css("left", -iNow * iX);
+					$(".banner-span span").removeClass("span_point");
+					$(".banner-span span").eq(iNow).addClass("span_point");
+				})
+				//左点击
+				$(".banner_prev").click(function() {
+					clearInterval(timer);
+					--iNow;
+					if (iNow <= -1) {
+						$(".banner_ul").css("left", -(iL.length - 1) * iX);
+						iNow = iL.length - 1;
+					}
+					$(".banner_ul").css("left", -iNow * iX);
+					$(".banner-span span").removeClass("span_point");
+					$(".banner-span span").eq(iNow).addClass("span_point");
+				});
+
+				//图标点击事件
+				$(".banner-span span").click(function() {
+					clearInterval(timer);
+					$(".banner-span span").removeClass("span_point");
+					$(".banner-span span").eq($(this).index()).addClass("span_point");
+					iNow = $(this).index();
+					$(".banner_ul").css("left", -iNow * iX);
+				})
+
+			})
+		</script>
+		<script type="text/javascript">
+			///*子菜单*/
+			var SPAN = 103;
+			var width = $(window).width();
+			var height = $(window).height();
+
+			$(function() {
+				if (width >= 1680) {
+					SPAN = 124;
+				} else {
+					SPAN = 103;
+				}
+				if (height < 550) height = 550;
+				//var h_num = (Math.floor(height/SPAN)-3)*SPAN;
+				//var mar_top = h_num + "px"; 
+				//$('.xq_box').css("top",mar_top);
+				//$('.xq_box').css("height",SPAN*2 + "px");
+				$('.xq_bg').css("height", SPAN * 2 + "px");
+				$('.xq_main').css("height", SPAN * 2 + "px");
+
+			});
+
+			$(function() {
+				$('.xq_box').off('click').on('click', function() {
+					var url = $(this).attr('data-url')
+					window.open(url);
+				});
+				setTimeout(function() {
+					$('.xq_box').animate({
+						'width': '30px',
+						'height': '30px'
+					});
+				}, 3000);
+				$('.xq_box').hover(function() {
+						$('.xq_box').stop().animate({
+							'width': SPAN * 2 + 'px',
+							'height': SPAN * 2 + 'px'
+						});
+					},
+					function() {
+						$('.xq_box').stop().animate({
+							'width': '30px',
+							'height': '30px'
+						});
+					});
+			});
+		</script>
+		<!--[if lt IE 9]>
+	    <script src="js/respond.js" type="text/javascript"></script>
+	<--[endif]---->
+		<!--Announced by Visual SiteBuilder 9-->
+		<link rel="stylesheet" type="text/css" href="_sitegray/_sitegray_d.css">
+		<script language="javascript" src="_sitegray/_sitegray.js"></script>
+		<!-- CustomerNO:77656262657232307e7847545352544403080003 -->
+		<link rel="stylesheet" type="text/css" href="./css/index.vsb.css">
+		<script type="text/javascript" src="./css/vsbscreen.min.js" id="_vsbscreen" devices="pc|pad"></script>
+		<script type="text/javascript" src="./js/counter.js"></script>
+		<script type="text/javascript">
+			_jsq_(1001, '/index.jsp', -1, 1552820829)
+		</script>
+		<script type="text/javascript" src="chrome-extension://aadgmnobpdmgmigaicncghmmoeflnamj/ng-inspector.js">
+		</script>
+	</head>
+	<body style="background: url(images/bg-ssss.jpg) no-repeat center 788px;">
+		<div style="position: absolute; z-index: 19700; top: -1970px; left: -1970px;"><iframe
+				src="http://www.bupt.edu.cn/system/resource/js/newcalendar/My97DatePicker.htm#www.bupt.edu.cn"
+				frameborder="0" border="0" scrolling="no" style="width: 186px; height: 199px;"></iframe></div>
+		<div class="pushWrapper">
+			<!-- INTRO -->
+			<div class="section-intro" id="section-intro" data-stellar-vertical-offset="0"
+				data-stellar-background-ratio="0.5">
+				<style>
+					.top-s {
+						position: absolute;
+						width: 100%;
+						height: 170px;
+						background: url(images/headbg.png) no-repeat;
+						background-size: 100%;
+						top: 0;
+						left: 0;
+						right: 0;
+						z-index: 1000;
+					}
+
+					.top-left {
+						margin-left: 60px;
+						color: #fff;
+						font-size: 14px;
+						float: left;
+					}
+
+					.top-left a,
+					.top-right a {
+						color: #fff;
+						font-size: 15px;
+						line-height: 120px;
+						padding: 0 20px;
+					}
+
+					.logo-s {
+						width: 325px;
+						height: 86px;
+						margin: 17px auto;
+						display: inline-block;
+					}
+
+					.top-right {
+						margin-right: 60px;
+						color: #fff;
+						font-size: 12px;
+						float: right;
+					}
+
+					.top-right li {
+						float: right;
+						list-style: none;
+					}
+
+					.ser-on a {
+						padding: 0;
+					}
+				</style>
+				<div class="top-s">
+					<div class="top-left">
+						<script language="javascript" src="./js/dynclicks.js"></script>
+						<script language="javascript" src="./js/openlink.js"></script> <a href="#" title=""
+							onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 54634)">English</a>
+						<a href="#" title="" onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 42745)">在校生</a>
+						<a href="#" title="" onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 42746)">教职工</a>
+						<a href="#" title="" onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 42747)">校友</a>
+						<a href="#" title="" onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 42748)">考生</a>
+
+					</div>
+
+					<ul class="top-right" style="position:relative;">
+
+						<li><a class="serbtnicon" style="padding: 0px 10px; margin-top: 52px;"><img alt=""
+									src="images/sericonbtn.png"></a>
+							<div class="serbox" style="margin-top: 52px;">
+								<script type="text/javascript">
+									function checkinputdata243882() {
+										encodeinputdata243882(document.getElementById("_w_v_l_s_n_s_show_title_243882"), document.getElementById(
+											"_w_v_l_s_n_s_k_title_id243882"));
+										encodeinputdata243882(document.getElementById("_w_v_l_s_n_s_show_content_243882"), document.getElementById(
+											"_w_v_l_s_n_s_k_content_id243882"));
+										encodeinputdata243882(document.getElementById("_w_v_l_s_n_s_show_k_243882"), document.getElementById(
+											"_w_v_l_s_n_s_k_k_id243882"));
+										encodeinputdata243882(document.getElementById("_w_v_l_s_n_s_show_sumary_243882"), document.getElementById(
+											"_w_v_l_s_n_s_k_sumary_id243882"));
+										encodeinputdata243882(document.getElementById("_w_v_l_s_n_s_show_author_243882"), document.getElementById(
+											"_w_v_l_s_n_s_k_author_id243882"));
+										encodeinputdata243882(document.getElementById("_w_v_l_s_n_s_show_source_243882"), document.getElementById(
+											"_w_v_l_s_n_s_k_source_id243882"));
+										encodeinputdata243882(document.getElementById("_w_v_l_s_n_s_show_column_243882"), document.getElementById(
+											"_w_v_l_s_n_s_k_column_id243882"));
+									}
+
+									function encodeinputdata243882(showinputobj, inputobj) {
+										var keyword = showinputobj.value;
+										if (window.toFF == 1) {
+											showinputobj.value = Simplized(keyword);
+										} else {
+											showinputobj.value = keyword;
+										}
+										var base64 = new Base64();
+										inputobj.value = base64.encode(showinputobj.value);
+										new VsbFormFunc().disableAutoEnable(showinputobj);
+									}
+								</script>
+								<form action="ssjgy.jsp?wbtreeid=1001" method="post" id="au1a" name="au1a"
+									onsubmit="return checkinputdata243882();" style="display: inline">
+									<input type="hidden" id="_w_v_l_s_n_s_k_title_id243882" name="_w_v_l_s_n_s_k_title"
+										value=""><input type="hidden" id="_w_v_l_s_n_s_k_content_id243882"
+										name="_w_v_l_s_n_s_k_content" value=""><input type="hidden"
+										id="_w_v_l_s_n_s_k_k_id243882" name="_w_v_l_s_n_s_k_k" value=""><input
+										type="hidden" id="_w_v_l_s_n_s_k_sumary_id243882" name="_w_v_l_s_n_s_k_sumary"
+										value=""><input type="hidden" id="_w_v_l_s_n_s_k_author_id243882"
+										name="_w_v_l_s_n_s_k_author" value=""><input type="hidden"
+										id="_w_v_l_s_n_s_k_source_id243882" name="_w_v_l_s_n_s_k_source" value=""><input
+										type="hidden" id="_w_v_l_s_n_s_k_column_id243882" name="_w_v_l_s_n_s_k_column"
+										value=""><input type="hidden" id="searchScope243882" name="searchScope"
+										value="1">
+
+
+
+									<input type="text" name="_w_v_l_s_n_s_show_title"
+										id="_w_v_l_s_n_s_show_title_243882" class="serk">
+
+									<input type="image" src="images/sericonbtn.png" align="absmiddle" class="sericon"
+										style="cursor: hand">
+
+								</form>
+								<script language="javascript" src="./js/base64.js"></script>
+								<script language="javascript" src="./js/WdatePicker.js"></script>
+								<link rel="stylesheet" type="text/css" href="./css/WdatePicker.css">
+								<script language="javascript" src="./js/formfunc.js"></script>
+
+							</div>
+						</li>
+						<li class="right-link">
+							<a href="#" onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 42750)">邮件系统</a>
+							<a href="#" onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 42752)">信息门户</a>
+							<a href="#" onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 42753)">书记信箱</a>
+							<a href="#" onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 42754)">校长信箱</a>
+							<a href="#" onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 58872)">旧版</a>
+						</li>
+						<div class="ssw" style="position:absolute;top:55px;right:0;z-index:-1;">
+
+
+							<a href="#" title="" onclick="_addDynClicks(&quot;wbimage&quot;, 1552820829, 48648)"
+								target="_blank">
+								<img src="images/by1.png" border="0" width="" height="">
+							</a>
+
+
+						</div>
+					</ul>
+
+
+
+					<a id="logoDiv" href="#" class="logo-s"
+						onclick="_addDynClicks(&quot;wbimage&quot;, 1552820829, 43411)">
+						<img src="images/logo.png" style="display:inline;">
+					</a>
+
+
+
+
+
+					<div class="clear"></div>
+
+
+					<div class="mainnav clearfix"
+						style="left: 50%; right: auto; padding-top: 0px; margin-left: -667px;">
+						<ul id="nav">
+							<li><a href="#" target="_blank"><i class="navicon1"></i>北邮概况</a>
+								<ul>
+									<li><a href="#">走进北邮</a></li>
+									<li><a href="#">领导机构</a></li>
+									<li><a href="#">校长演讲</a></li>
+									<li><a href="#">历史沿革</a></li>
+								</ul>
+
+							</li>
+
+							<li><a href="#" target="_blank"><i class="navicon2"></i>院系机构</a>
+
+							</li>
+
+							<li><a href="#" target="_blank" class=""><i class="navicon3"></i>招生就业</a>
+								<ul style="overflow: hidden; display: none;">
+									<li><a href="#">本科生招生</a></li>
+									<li><a href="#">研究生招生</a></li>
+									<li><a href="#">就业</a></li>
+								</ul>
+
+							</li>
+
+							<li><a href="#" target="_blank" class=""><i class="navicon4"></i>学在北邮</a>
+								<ul style="overflow: hidden; display: none;">
+									<li><a href="#">本科生教育</a></li>
+									<li><a href="#">研究生教育</a></li>
+									<li><a href="#">继续教育</a></li>
+									<li><a href="#">中外合作办学</a></li>
+									<li><a href="#">汉语留学生</a></li>
+									<li><a href="#">就业与实习</a></li>
+									<li><a href="#">学术活动</a></li>
+									<li><a href="#">教师主页</a></li>
+								</ul>
+
+							</li>
+
+							<li><a href="#" target="_blank" class=""><i class="navicon5"></i>科研学术</a>
+								<ul style="display: none;">
+									<li><a href="#">科研项目</a></li>
+									<li><a href="#">人才团队</a></li>
+									<li><a href="#">科研成果</a></li>
+									<li><a href="#">科研基地</a></li>
+									<li><a href="#">联合实验室</a></li>
+									<li><a href="#">技术转移</a></li>
+									<li><a href="#">北邮学报</a></li>
+								</ul>
+
+							</li>
+
+							<li><a href="#" target="_blank"><i class="navicon6"></i>国际交流</a>
+
+							</li>
+
+							<li class="last"><a href="#" target="_blank"><i class="navicon7"></i>人才招聘</a>
+
+							</li>
+
+						</ul>
+					</div>
+				</div>
+				<div id="banner">
+					<div class="banner_img">
+						<ul class="banner_ul">
+							<li><img src="./images/fyjsh1.png" /></li>
+							<li><img src="./images/gqbanner.png" /></li>
+							<li><img src="./images/wwhj.png" /></li>
+							<li><img src="./images/xds.png" /></li>
+						</ul>
+					</div>
+					<nav class="banner-span">
+						<span class="span_point"></span>
+						<span></span>
+						<span></span>
+						<span></span>
+					</nav>
+					<div class="banner_a">
+						<div class="banner_prev">
+							< </div>
+								<div class="banner_next">
+									>
+								</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="timeline-part" id="timeline-part">
+					<div class="container">
+						<div class="important-news" style="padding-top: 70px;">
+							<div class="beiyouyaowen fl">
+								<div class="titBox clearfix">
+
+
+									<span class="fl"><a href="#">北邮要闻</a></span>
+									<p class="fr clearfix">
+										<a class="jrxw fl" href="#">&gt;&gt;进入·新闻网</a>
+										<a class="fl moreBtn2" href="#"><img alt="" src="images/moreicon.png"></a>
+
+									</p>
+								</div>
+								<script language="javascript" src="./js/ajax.js"></script>
+								<ul class="news-list">
+									<li>
+										<a href="#">
+											<div class="pic"> <img
+													src="./images/F72CAD35DC8C0D4B96AD77005CD_4E5EE9A6_27A4E.jpg"
+													alt=""></div>
+											<div class="picTxt">
+												<h2>我校承办的“中国高校人工智能人才国际培养计划”2021高校人工智能人才国际培养论...</h2>
+												<dl>
+													<dt>
+														<p class="time">2021.11.03</p>
+													</dt>
+													<dd><i></i><span id="dynclicks_u7_84649"
+															name="dynclicks_u7_84649">81</span></dd>
+												</dl>
+
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<div class="pic"> <img
+													src="./images/A734080A4397F24A13161381CC5_65E85ACA_1D8FB.jpg"
+													alt=""></div>
+											<div class="picTxt">
+												<h2>我校顺利完成北京市中小学教师资格考试组考工作</h2>
+												<dl>
+													<dt>
+														<p class="time">2021.11.02</p>
+													</dt>
+													<dd><i></i><span id="dynclicks_u7_84646"
+															name="dynclicks_u7_84646">223</span></dd>
+												</dl>
+
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<div class="pic"> <img
+													src="./images/502BFD81C936477DFAADE2C771A_2A9C2610_5F7DD.jpg"
+													alt=""></div>
+											<div class="picTxt">
+												<h2>北京邮电大学召开教材工作领导小组会议</h2>
+												<dl>
+													<dt>
+														<p class="time">2021.11.02</p>
+													</dt>
+													<dd><i></i><span id="dynclicks_u7_84645"
+															name="dynclicks_u7_84645">173</span></dd>
+												</dl>
+
+											</div>
+										</a>
+									</li>
+								</ul>
+								<ul class="news-list2">
+									<li>
+										<a href="#"><i></i>乔建永校长同爱尔兰都柏林城市大学Daire Keogh校长举行视频会见并签署合作协议</a>
+										<b>11.01</b>
+									</li>
+									<li>
+										<a href="#"><i></i>“计算机科学与技术”工程教育专业认证线上考查工作顺利完成</a>
+										<b>10.31</b>
+									</li>
+									<li>
+										<a href="#"><i></i>我校青年教师张佳鑫获评“全国向上向善好青年”</a>
+										<b>10.29</b>
+									</li>
+									<li>
+										<a href="#"><i></i>我校举行研究生党员骨干培训工作总结暨新学年工作启动会</a>
+										<b>10.29</b>
+									</li>
+									<li>
+										<a href="#"><i></i>我校志愿者代表线上参加首都高校冬奥、冬残奥志愿者誓师大会</a>
+										<b>10.29</b>
+									</li>
+									<li>
+										<a href="#"><i></i>我校人文学院教师荣获第十二届“外教社杯”全国高校外语教学大赛北京赛区一等奖</a>
+										<b>10.29</b>
+									</li>
+									<li>
+										<a href="#"><i></i>我校国旗护卫队在首届全国大学生国旗护卫队展示赛中喜获佳绩</a>
+										<b>10.29</b>
+									</li>
+									<li>
+										<a href="#"><i></i>北京邮电大学召开首批“青春黔行”研究生长顺服务团总结汇报会</a>
+										<b>10.29</b>
+									</li>
+									<li>
+										<a href="#"><i></i>我校参与主办的第四届中国文化计算大会举行</a>
+										<b>10.28</b>
+									</li>
+								</ul>
+								<script>
+									_showDynClickBatch(['dynclicks_u7_84649', 'dynclicks_u7_84646', 'dynclicks_u7_84645', 'dynclicks_u7_84642',
+											'dynclicks_u7_84641', 'dynclicks_u7_84640', 'dynclicks_u7_84637', 'dynclicks_u7_84639',
+											'dynclicks_u7_84638', 'dynclicks_u7_84635', 'dynclicks_u7_84634', 'dynclicks_u7_84631'
+										], [84649, 84646, 84645, 84642, 84641, 84640, 84637, 84639, 84638, 84635, 84634, 84631], "wbnews",
+										1552820829)
+								</script>
+
+							</div>
+
+
+
+
+
+
+							<div class="clear"></div>
+						</div>
+
+						<!------------>
+						<div class="container clearfix"
+							style="border: 1px solid rgb(233, 233, 233); border-image: none;">
+							<div class="fl zttit">
+								<img alt="" src="images/zticon.png">
+								<p><a href="rdzt1.htm">热点专题</a></p>
+								<a class="zt-more" href="#"><img alt="" src="images/moreicon.png"></a>
+							</div>
+							<div class="slick slick-initialized slick-slider" id="slick4"
+								style="width:1160px; float:right;">
+
+
+
+
+
+								<div class="slick-list" tabindex="0">
+									<div class="slick-track"
+										style="opacity: 1; width: 4176px; transform: translate3d(-1856px, 0px, 0px);">
+										<div class="slick-slide slick-cloned" style="width: 232px;">
+											<ul class="hotTopic">
+												<li>
+													<a href="#" target="_blank">
+														<img src="images/20200831170448.jpg"
+															onclick="_addDynClicks(&quot;wbimage&quot;, 1552820829, 48554)"
+															alt="">
+														<div class="cover3"></div>
+													</a>
+												</li>
+											</ul>
+										</div>
+										<div class="slick-slide slick-cloned" style="width: 232px;">
+											<ul class="hotTopic">
+												<li>
+													<a href="#" target="_blank">
+														<img src="images/bwcx.jpg"
+															onclick="_addDynClicks(&quot;wbimage&quot;, 1552820829, 48230)"
+															alt="">
+														<div class="cover3"></div>
+													</a>
+												</li>
+											</ul>
+										</div>
+										<div class="slick-slide slick-cloned" style="width: 232px;">
+											<ul class="hotTopic">
+												<li>
+													<a href="#" target="_blank">
+														<img src="images/hotTopic2.png"
+															onclick="_addDynClicks(&quot;wbimage&quot;, 1552820829, 42639)"
+															alt="">
+														<div class="cover3"></div>
+													</a>
+												</li>
+											</ul>
+										</div>
+										<div class="slick-slide slick-cloned" style="width: 232px;">
+											<ul class="hotTopic">
+												<li>
+													<a href="#" target="_blank">
+														<img src="images/hotTopic3.png"
+															onclick="_addDynClicks(&quot;wbimage&quot;, 1552820829, 42638)"
+															alt="">
+														<div class="cover3"></div>
+													</a>
+												</li>
+											</ul>
+										</div>
+										<div class="slick-slide slick-cloned" style="width: 232px;">
+											<ul class="hotTopic">
+												<li>
+													<a href="#" target="_blank">
+														<img src="css/hotTopic5.jpg"
+															onclick="_addDynClicks(&quot;wbimage&quot;, 1552820829, 42636)"
+															alt="">
+														<div class="cover3"></div>
+													</a>
+												</li>
+											</ul>
+										</div>
+										<div class="slick-slide" style="width: 232px;">
+											<ul class="hotTopic">
+												<li>
+													<a href="#" target="_blank">
+														<img src="images/0101.jpg"
+															onclick="_addDynClicks(&quot;wbimage&quot;, 1552820829, 48647)"
+															alt="">
+														<div class="cover3"></div>
+													</a>
+												</li>
+											</ul>
+										</div>
+										<div class="slick-slide" style="width: 232px;">
+											<ul class="hotTopic">
+												<li>
+													<a href="#" target="_blank">
+														<img src="images/20201023132953.jpg"
+															onclick="_addDynClicks(&quot;wbimage&quot;, 1552820829, 48614)"
+															alt="">
+														<div class="cover3"></div>
+													</a>
+												</li>
+											</ul>
+										</div>
+										<div class="slick-slide" style="width: 232px;">
+											<ul class="hotTopic">
+												<li>
+													<a href="#" target="_blank">
+														<img src="images/ddh15.jpg"
+															onclick="_addDynClicks(&quot;wbimage&quot;, 1552820829, 48594)"
+															alt="">
+														<div class="cover3"></div>
+													</a>
+												</li>
+											</ul>
+										</div>
+										<div class="slick-slide slick-active" style="width: 232px;">
+											<ul class="hotTopic">
+												<li>
+													<a href="#" target="_blank">
+														<img src="images/20200831170448.jpg"
+															onclick="_addDynClicks(&quot;wbimage&quot;, 1552820829, 48554)"
+															alt="">
+														<div class="cover3"></div>
+													</a>
+												</li>
+											</ul>
+										</div>
+										<div class="slick-slide slick-active" style="width: 232px;">
+											<ul class="hotTopic">
+												<li>
+													<a href="#" target="_blank">
+														<img src="images/bwcx.jpg"
+															onclick="_addDynClicks(&quot;wbimage&quot;, 1552820829, 48230)"
+															alt="">
+														<div class="cover3"></div>
+													</a>
+												</li>
+											</ul>
+										</div>
+										<div class="slick-slide slick-active" style="width: 232px;">
+											<ul class="hotTopic">
+												<li>
+													<a href="#" target="_blank">
+														<img src="images/hotTopic2.png"
+															onclick="_addDynClicks(&quot;wbimage&quot;, 1552820829, 42639)"
+															alt="">
+														<div class="cover3"></div>
+													</a>
+												</li>
+											</ul>
+										</div>
+										<div class="slick-slide slick-active" style="width: 232px;">
+											<ul class="hotTopic">
+												<li>
+													<a href="#" target="_blank">
+														<img src="images/hotTopic3.png"
+															onclick="_addDynClicks(&quot;wbimage&quot;, 1552820829, 42638)"
+															alt="">
+														<div class="cover3"></div>
+													</a>
+												</li>
+											</ul>
+										</div>
+										<div class="slick-slide slick-active" style="width: 232px;">
+											<ul class="hotTopic">
+												<li>
+													<a href="#" target="_blank">
+														<img src="css/hotTopic5.jpg"
+															onclick="_addDynClicks(&quot;wbimage&quot;, 1552820829, 42636)"
+															alt="">
+														<div class="cover3"></div>
+													</a>
+												</li>
+											</ul>
+										</div>
+										<div class="slick-slide slick-cloned" style="width: 232px;">
+											<ul class="hotTopic">
+												<li>
+													<a href="#" target="_blank">
+														<img src="images/0101.jpg"
+															onclick="_addDynClicks(&quot;wbimage&quot;, 1552820829, 48647)"
+															alt="">
+														<div class="cover3"></div>
+													</a>
+												</li>
+											</ul>
+										</div>
+										<div class="slick-slide slick-cloned" style="width: 232px;">
+											<ul class="hotTopic">
+												<li>
+													<a href="#" target="_blank">
+														<img src="images/20201023132953.jpg"
+															onclick="_addDynClicks(&quot;wbimage&quot;, 1552820829, 48614)"
+															alt="">
+														<div class="cover3"></div>
+													</a>
+												</li>
+											</ul>
+										</div>
+										<div class="slick-slide slick-cloned" style="width: 232px;">
+											<ul class="hotTopic">
+												<li>
+													<a href="#" target="_blank">
+														<img src="images/ddh15.jpg"
+															onclick="_addDynClicks(&quot;wbimage&quot;, 1552820829, 48594)"
+															alt="">
+														<div class="cover3"></div>
+													</a>
+												</li>
+											</ul>
+										</div>
+										<div class="slick-slide slick-cloned" style="width: 232px;">
+											<ul class="hotTopic">
+												<li>
+													<a href="#" target="_blank">
+														<img src="images/20200831170448.jpg"
+															onclick="_addDynClicks(&quot;wbimage&quot;, 1552820829, 48554)"
+															alt="">
+														<div class="cover3"></div>
+													</a>
+												</li>
+											</ul>
+										</div>
+										<div class="slick-slide slick-cloned" style="width: 232px;">
+											<ul class="hotTopic">
+												<li>
+													<a href="#" target="_blank">
+														<img src="images/bwcx.jpg"
+															onclick="_addDynClicks(&quot;wbimage&quot;, 1552820829, 48230)"
+															alt="">
+														<div class="cover3"></div>
+													</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+
+
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<div class="featured-part" id="featured-part">
+				<div class="container clearfix">
+
+					<div class="itemList clearfix">
+						<div class="Exchange fl">
+							<div class="topBox1 clearfix"><span><a href="mtby1.htm">媒体北邮</a></span><a class="moreBtn"
+									href="mtby1.htm"><img alt="" src="images/moreicon.png"></a></div>
+							<div class="slick slick-initialized slick-slider" id="slick1">
+								<div class="slick-list draggable" tabindex="0">
+									<div class="slick-track"
+										style="opacity: 1; width: 1900px; transform: translate3d(-1140px, 0px, 0px);">
+										<div class="slick-slide slick-cloned" style="width: 380px;">
+											<ul class="ExchangePicBox swiper-slide">
+												<li class="clearfix">
+													<div class="ExchangePic fl">
+														<img src="images/btt.jpg" alt="">
+													</div>
+													<div class="ExchangePicTxt fr">
+														<a href="#" style="color:#393939 !important;">
+															<h3>中国新闻网：北京邮电大学与银河航天初...</h3>
+														</a>
+														<p>2021.10.22</p>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<div class="slick-slide" style="width: 380px;">
+											<ul class="ExchangePicBox swiper-slide">
+												<li class="clearfix">
+													<div class="ExchangePic fl">
+														<img src="images/btt.jpg" alt="">
+													</div>
+													<div class="ExchangePicTxt fr">
+														<a href="#" style="color:#393939 !important;">
+															<h3>中国新闻网：2021中国文化计算大会发布1...</h3>
+														</a>
+														<p>2021.10.27</p>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<div class="slick-slide" style="width: 380px;">
+											<ul class="ExchangePicBox swiper-slide">
+												<li class="clearfix">
+													<div class="ExchangePic fl">
+														<img src="images/btt.jpg" alt="">
+													</div>
+													<div class="ExchangePicTxt fr">
+														<a href="#" style="color:#393939 !important;">
+															<h3>腾讯网：北京邮电大学公布就业质量报告...</h3>
+														</a>
+														<p>2021.10.25</p>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<div class="slick-slide slick-active" style="width: 380px;">
+											<ul class="ExchangePicBox swiper-slide">
+												<li class="clearfix">
+													<div class="ExchangePic fl">
+														<img src="images/btt.jpg" alt="">
+													</div>
+													<div class="ExchangePicTxt fr">
+														<a href="#" style="color:#393939 !important;">
+															<h3>中国新闻网：北京邮电大学与银河航天初...</h3>
+														</a>
+														<p>2021.10.22</p>
+													</div>
+												</li>
+											</ul>
+										</div>
+										<div class="slick-slide slick-cloned" style="width: 380px;">
+											<ul class="ExchangePicBox swiper-slide">
+												<li class="clearfix">
+													<div class="ExchangePic fl">
+														<img src="images/btt.jpg" alt="">
+													</div>
+													<div class="ExchangePicTxt fr">
+														<a href="#" style="color:#393939 !important;">
+															<h3>中国新闻网：2021中国文化计算大会发布1...</h3>
+														</a>
+														<p>2021.10.27</p>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+
+								<script>
+									_showDynClickBatch(['dynclicks_u9_84632', 'dynclicks_u9_84633', 'dynclicks_u9_84623', 'dynclicks_u9_84620',
+										'dynclicks_u9_84615'
+									], [84632, 84633, 84623, 84620, 84615], "wbnews", 1552820829)
+								</script>
+
+								<button type="button" class="slick-prev"
+									style="display: block;">Previous</button><button type="button" class="slick-next"
+									style="display: block;">Next</button>
+								<ul class="slick-dots" style="display: block;">
+									<li class=""><button type="button">1</button></li>
+									<li class=""><button type="button">2</button></li>
+									<li class="slick-active"><button type="button">3</button></li>
+								</ul>
+							</div>
+							<ul class="title-list">
+								<li>
+									<a href="#">中国教育新闻网：第三届北邮网络空间文化节开幕</a>
+									<b>10.21</b>
+								</li>
+
+								<li>
+									<a href="#">人民网：第三届北邮网络空间文化节开幕</a>
+									<b>10.20</b>
+								</li>
+
+							</ul>
+							<script>
+								_showDynClickBatch(['dynclicks_u10_84632', 'dynclicks_u10_84633', 'dynclicks_u10_84623', 'dynclicks_u10_84620',
+									'dynclicks_u10_84615'
+								], [84632, 84633, 84623, 84620, 84615], "wbnews", 1552820829)
+							</script>
+
+						</div>
+						<div class="recruitment fl">
+							<div class="topBox1 clearfix"><span><a href="rczp.htm">人才招聘</a></span><a class="moreBtn"
+									href="rczp.htm"><img alt="" src="images/moreicon.png"></a></div>
+							<ul class="title-list">
+
+								<li>
+									<a href="#">第五届北京邮电大学信息科技国际青年学者论坛通知</a>
+									<b>10.20</b>
+								</li>
+
+
+								<li>
+									<a href="#">北京邮电大学博士后研究人员招聘启事</a>
+									<b>09.15</b>
+								</li>
+
+
+								<li>
+									<a href="#">北京邮电大学诚邀海内外优秀人才加盟</a>
+									<b>09.15</b>
+								</li>
+
+
+								<li>
+									<a href="#">北京邮电大学信息化技术中心招聘启事（人才派遣）</a>
+									<b>10.15</b>
+								</li>
+
+
+								<li>
+									<a href="#">信息与通信工程学院北邮-中国移动研究院联合创新中...</a>
+									<b>10.14</b>
+								</li>
+
+
+								<li>
+									<a href="#">北京邮电大学教务处招聘启事(人才派遣)（重发）</a>
+									<b>10.13</b>
+								</li>
+
+							</ul>
+							<script>
+								_showDynClickBatch(['dynclicks_u11_84612', 'dynclicks_u11_84506', 'dynclicks_u11_84504', 'dynclicks_u11_84594',
+									'dynclicks_u11_84588', 'dynclicks_u11_84585'
+								], [84612, 84506, 84504, 84594, 84588, 84585], "wbnews", 1552820829)
+							</script>
+
+						</div>
+						<div class="announcements fl">
+							<div class="topBox1 clearfix"><span><a href="xxgg.htm">信息公告</a></span><a class="moreBtn"
+									href="xxgg.htm"><img alt="" src="images/moreicon.png"></a></div>
+							<div class="slick slick-initialized slick-slider" id="slick2">
+								<div class="slick-list draggable" tabindex="0">
+									<div class="slick-track"
+										style="opacity: 1; width: 1900px; transform: translate3d(-1140px, 0px, 0px);">
+										<div class="slick-slide slick-cloned" style="width: 380px;">
+											<ul class="announcements-list ">
+												<li>
+													<p class="announcements-date">
+														<b>18</b>
+														<span>十月</span>
+													</p>
+													<a href="#">北京邮电大学2021年沙河校区计算机实验教学建设项目(二次招标)公开招标公告</a>
+												</li>
+												<li>
+													<p class="announcements-date">
+														<b>14</b>
+														<span>十月</span>
+													</p>
+													<a href="#">北京邮电大学2021年网络运维服务采购项目成交公告</a>
+												</li>
+												<li>
+													<p class="announcements-date">
+														<b>12</b>
+														<span>十月</span>
+													</p>
+													<a href="#">北京邮电大学网络教育学院“非学历教育”教学平台升级项目公开招标公告</a>
+												</li>
+
+											</ul>
+
+										</div>
+										<div class="slick-slide" style="width: 380px;">
+											<ul class="announcements-list ">
+												<li>
+													<p class="announcements-date">
+														<b>01</b>
+														<span>十一月</span>
+													</p>
+													<a href="#">深圳北邮科技大厦酒店式公寓委托经营管理方遴选项目成交结果公告</a>
+												</li>
+												<li>
+													<p class="announcements-date">
+														<b>27</b>
+														<span>十月</span>
+													</p>
+													<a href="#">北京邮电大学大数据分析及数据安全加固采购项目公开招标公告</a>
+												</li>
+												<li>
+													<p class="announcements-date">
+														<b>27</b>
+														<span>十月</span>
+													</p>
+													<a href="#">北京邮电大学统一身份认证及一张表数据治理平台采购项目公开招标公告</a>
+												</li>
+
+											</ul>
+
+										</div>
+										<div class="slick-slide" style="width: 380px;">
+											<ul class="announcements-list ">
+												<li>
+													<p class="announcements-date">
+														<b>25</b>
+														<span>十月</span>
+													</p>
+													<a href="#">智能客服系统竞争性磋商</a>
+												</li>
+												<li>
+													<p class="announcements-date">
+														<b>22</b>
+														<span>十月</span>
+													</p>
+													<a href="#">北京邮电大学沙河校区一期公共教学楼项目精装修设计采购项目竞争性磋商公告</a>
+												</li>
+												<li>
+													<p class="announcements-date">
+														<b>20</b>
+														<span>十月</span>
+													</p>
+													<a href="#">北京邮电大学消防维保服务项目中标公告</a>
+												</li>
+
+											</ul>
+
+										</div>
+										<div class="slick-slide slick-active" style="width: 380px;">
+											<ul class="announcements-list ">
+												<li>
+													<p class="announcements-date">
+														<b>18</b>
+														<span>十月</span>
+													</p>
+													<a href="#">北京邮电大学2021年沙河校区计算机实验教学建设项目(二次招标)公开招标公告</a>
+												</li>
+												<li>
+													<p class="announcements-date">
+														<b>14</b>
+														<span>十月</span>
+													</p>
+													<a href="#">北京邮电大学2021年网络运维服务采购项目成交公告</a>
+												</li>
+												<li>
+													<p class="announcements-date">
+														<b>12</b>
+														<span>十月</span>
+													</p>
+													<a href="#">北京邮电大学网络教育学院“非学历教育”教学平台升级项目公开招标公告</a>
+												</li>
+
+											</ul>
+
+										</div>
+										<div class="slick-slide slick-cloned" style="width: 380px;">
+											<ul class="announcements-list ">
+												<li>
+													<p class="announcements-date">
+														<b>01</b>
+														<span>十一月</span>
+													</p>
+													<a href="#">深圳北邮科技大厦酒店式公寓委托经营管理方遴选项目成交结果公告</a>
+												</li>
+												<li>
+													<p class="announcements-date">
+														<b>27</b>
+														<span>十月</span>
+													</p>
+													<a href="#">北京邮电大学大数据分析及数据安全加固采购项目公开招标公告</a>
+												</li>
+												<li>
+													<p class="announcements-date">
+														<b>27</b>
+														<span>十月</span>
+													</p>
+													<a href="#">北京邮电大学统一身份认证及一张表数据治理平台采购项目公开招标公告</a>
+												</li>
+
+											</ul>
+
+										</div>
+									</div>
+								</div>
+
+
+								<script>
+									_showDynClickBatch(['dynclicks_u12_84644', 'dynclicks_u12_84629', 'dynclicks_u12_84627'], [84644, 84629,
+										84627], "wbnews", 1552820829)
+								</script>
+
+
+
+
+								<script>
+									_showDynClickBatch(['dynclicks_u13_84644', 'dynclicks_u13_84629', 'dynclicks_u13_84627', 'dynclicks_u13_84625',
+										'dynclicks_u13_84621', 'dynclicks_u13_84616', 'dynclicks_u13_84603', 'dynclicks_u13_84590',
+										'dynclicks_u13_84599'
+									], [84644, 84629, 84627, 84625, 84621, 84616, 84603, 84590, 84599], "wbnews", 1552820829)
+								</script>
+
+
+
+
+
+								<script>
+									_showDynClickBatch(['dynclicks_u14_84644', 'dynclicks_u14_84629', 'dynclicks_u14_84627', 'dynclicks_u14_84625',
+										'dynclicks_u14_84621', 'dynclicks_u14_84616', 'dynclicks_u14_84603', 'dynclicks_u14_84590',
+										'dynclicks_u14_84599'
+									], [84644, 84629, 84627, 84625, 84621, 84616, 84603, 84590, 84599], "wbnews", 1552820829)
+								</script>
+
+
+								<button type="button" class="slick-prev"
+									style="display: block;">Previous</button><button type="button" class="slick-next"
+									style="display: block;">Next</button>
+								<ul class="slick-dots" style="display: block;">
+									<li class=""><button type="button">1</button></li>
+									<li class=""><button type="button">2</button></li>
+									<li class="slick-active"><button type="button">3</button></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+
+
+				</div>
+			</div>
+
+			<div class="testimonials-part" id="testimonials-part">
+				<div class="container">
+					<div class="important-news">
+						<div class="titBox2 clearfix">
+							<ul class="educationNav fl">
+								<li class="active"><a href="gjjl.htm">国际交流</a><b class="line2"></b><a class="moreicon22"
+										href="gjjl.htm"><img alt="" src="images/moreicon.png"></a></li>
+								<li><a href="#">学术报告</a><a class="moreicon22" href="#"><img alt=""
+											src="images/moreicon.png"></a></li>
+							</ul>
+
+						</div>
+						<ul class="eduaction-list clearfix">
+							<li>
+								<a href="#">
+									<div class="pic3"> <img
+											src="./images/15AF3DEE8E7098F524296678A20_F209F2FA_2E308.jpg" alt=""></div>
+									<div class="picTxt">
+										<h2>乔建永校长同爱尔兰都柏林城市大学Daire Keogh校长...</h2>
+										<p class="time2">2021.11.01</p>
+										<p class="position"></p>
+									</div>
+								</a>
+							</li>
+
+							<li>
+								<a href="#">
+									<div class="pic3"> <img
+											src="./images/ECF55FF3D66A44BAD57AD0E64B6_A372F7D8_35837.jpg" alt=""></div>
+									<div class="picTxt">
+										<h2>徐坤副校长会见国际胜任力培养专委会张宁理事长</h2>
+										<p class="time2">2021.10.29</p>
+										<p class="position"></p>
+									</div>
+								</a>
+							</li>
+
+							<li>
+								<a href="#">
+									<div class="pic3"> <img
+											src="./images/710EBB948B970E271609B025C83_E24380EE_5654E.jpg" alt=""></div>
+									<div class="picTxt">
+										<h2>徐坤副校长出席“国际电联高级别研讨会”</h2>
+										<p class="time2">2021.10.08</p>
+										<p class="position"></p>
+									</div>
+								</a>
+							</li>
+
+							<li>
+								<a href="#">
+									<div class="pic3"> <img
+											src="./images/36F544197FDC01A53BD95C9FC26_BB662736_1955C.jpg" alt=""></div>
+									<div class="picTxt">
+										<h2>乔建永校长同英国伦敦玛丽女王大学Colin Bailey校...</h2>
+										<p class="time2">2021.07.14</p>
+										<p class="position"></p>
+									</div>
+								</a>
+							</li>
+
+						</ul>
+						<script>
+							_showDynClickBatch(['dynclicks_u15_84643', 'dynclicks_u15_84636', 'dynclicks_u15_84575', 'dynclicks_u15_84353'],
+								[84643, 84636, 84575, 84353], "wbnews", 1552820829)
+						</script>
+
+
+						<div class="eduaction-list" style="display: none;">
+
+							<ul class="clearfix xsbg">
+								<li>
+									<a href="#">
+
+
+
+										<div class="picTxt">
+											<h2>Certificate Transparency in the Wild: Exploring the Servi...</h2>
+											<p class="people"> 林璟锵
+											</p>
+											<p class="position">创新楼309会议室</p>
+											<p class="time2">2020-01-09 10:00</p>
+
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+
+
+
+										<div class="picTxt">
+											<h2>Deep Learning for Ultra-Reliable and Low-Latency Communic...</h2>
+											<p class="people"> Dr. Changyang She, 澳大利亚悉尼大学
+											</p>
+											<p class="position">新科研楼610会议室</p>
+											<p class="time2">2019-12-26 15:00</p>
+
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+
+
+
+										<div class="picTxt">
+											<h2>怎样打造一个能够和人自由对话的机器？ —— (Conversational...</h2>
+											<p class="people"> 孙健（阿里巴巴达摩院资深专家）
+											</p>
+											<p class="position">教三-134</p>
+											<p class="time2">2019-12-25 10:00</p>
+
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+
+
+
+										<div class="picTxt">
+											<h2>Beyond NOMA: Rate-Splitting and Robust Interference Manag...</h2>
+											<p class="people"> 帝国理工学院Bruno博士
+											</p>
+											<p class="position">明光楼-919室</p>
+											<p class="time2">2019-12-24 10:30</p>
+
+										</div>
+									</a>
+								</li>
+							</ul>
+							<script>
+								_showDynClickBatch(['dynclicks_u16_82087', 'dynclicks_u16_82086', 'dynclicks_u16_82085', 'dynclicks_u16_82084'],
+									[82087, 82086, 82085, 82084], "wbnews", 1552820829)
+							</script>
+						</div>
+					</div>
+
+
+
+
+					<div class="zhaosheng">
+						<ul>
+
+							<li class="fl">
+
+
+								<a href="#" onclick="_addDynClicks(&quot;wbimage&quot;, 1552820829, 48155)">
+									<h3>本科生招生</h3>
+									<img src="./images/pic111.jpg">
+								</a>
+
+
+							</li>
+							<li class="fr">
+
+
+								<a href="#" onclick="_addDynClicks(&quot;wbimage&quot;, 1552820829, 48156)">
+									<h3>研究生招生</h3>
+									<img src="./images/pic222.jpg">
+								</a>
+
+
+							</li>
+						</ul>
+					</div>
+					<div class="xz-title fl">公共服务
+						<p class="fr clearfix">
+							<a class="fl moreBtn2" href="#"><img alt="" src="images/moreicon.png"></a>
+						</p>
+					</div>
+					<script type="text/javascript" src="./js/SuperSlide.js"></script>
+
+					<style>
+						.team_n li:last-child {
+							padding-right: 0;
+						}
+
+						.team_n li:hover {
+							color: #1546AA;
+						}
+
+						.team_n ul {}
+
+						.team_n li {
+							position: relative;
+							margin-top: 60px;
+							width: 270px !important;
+						}
+
+						.team_n a {
+							font-size: 22px;
+							color: #000;
+							padding-left: 58px;
+							padding-bottom: 11px;
+							padding-top: 11px;
+							display: inline-block;
+							padding-right: 70px;
+						}
+
+						.team_n li b {
+							display: inline-block;
+							height: 46px;
+							width: 1px;
+							background: #BFBFBF;
+							position: absolute;
+							right: 0;
+							top: 0;
+							margin-left: 70px;
+							margin-right: 70px;
+						}
+
+						.Campus-network {
+							background: url(images/01.png) no-repeat;
+						}
+
+						.Library {
+							background: url(images/02.png) no-repeat;
+						}
+
+						.phone {
+							background: url(images/03.png) no-repeat;
+						}
+
+						.Calendar {
+							background: url(images/04.png) no-repeat;
+						}
+
+						.Logistical-services {
+							background: url(images/05.png) no-repeat;
+						}
+
+						.Campus-network:hover {
+							background: url(images/001.png) no-repeat;
+						}
+
+						.Library:hover {
+							background: url(images/002.png) no-repeat;
+						}
+
+						.phone:hover {
+							background: url(images/003.png) no-repeat;
+						}
+
+						.Calendar:hover {
+							background: url(images/004.png) no-repeat;
+						}
+
+						.Logistical-services:hover {
+							background: url(images/005.png) no-repeat;
+						}
+
+
+						.phzaq {
+							background: url(images/06.png) no-repeat;
+						}
+
+						.iki {
+							background: url(images/07.png) no-repeat;
+						}
+
+						.osl {
+							background: url(images/08.png) no-repeat;
+						}
+
+						.aowk {
+							background: url(images/09.png) no-repeat;
+						}
+
+						.ggzi {
+							background: url(images/10.png) no-repeat;
+						}
+
+						.dzpz {
+							background: url(images/11.png) no-repeat;
+						}
+
+						.phzaq:hover {
+							background: url(images/006.png) no-repeat;
+						}
+
+						.iki:hover {
+							background: url(images/007.png) no-repeat;
+						}
+
+						.osl:hover {
+							background: url(images/008.png) no-repeat;
+						}
+
+						.aowk:hover {
+							background: url(images/009.png) no-repeat;
+						}
+
+						.ggzi:hover {
+							background: url(images/010.png) no-repeat;
+						}
+
+						.dzpz:hover {
+							background: url(images/011.png) no-repeat;
+						}
+					</style>
+					<div class="team_n">
+						<div class="bd">
+							<div class="tempWrap" style="overflow:hidden; position:relative; width:1350px">
+								<ul
+									style="width: 4590px; position: relative; overflow: hidden; padding: 0px; margin: 0px; left: -270px;">
+									<li class="dzpz clone" style="float: left; width: 270px;"><a
+											href="https://dzpz.bupt.edu.cn/"
+											onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 58921)">电子凭证<b></b></a>
+									</li>
+									<li class="Campus-network" style="float: left; width: 270px;"><a href="#"
+											onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 42967)">校园网<b></b></a>
+									</li>
+									<li class="Library" style="float: left; width: 270px;"><a href="#"
+											onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 42968)">图书馆<b></b></a>
+									</li>
+									<li class="phone" style="float: left; width: 270px;"><a href="#"
+											onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 42969)">办公电话<b></b></a>
+									</li>
+									<li class="Calendar" style="float: left; width: 270px;"><a href="#"
+											onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 42970)">北邮校历<b></b></a>
+									</li>
+									<li class="Logistical-services" style="float: left; width: 270px;"><a href="#"
+											onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 42971)">后勤服务<b></b></a>
+									</li>
+									<li class="phzaq" style="float: left; width: 270px;"><a href="#"
+											onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 58866)">出版社<b></b></a>
+									</li>
+									<li class="iki" style="float: left; width: 270px;"><a href="#"
+											onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 58867)">信息门户<b></b></a>
+									</li>
+									<li class="osl" style="float: left; width: 270px;"><a href="#"
+											onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 58868)">交通图<b></b></a>
+									</li>
+									<li class="aowk" style="float: left; width: 270px;"><a href="#"
+											onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 58869)">档案馆<b></b></a>
+									</li>
+									<li class="ggzi" style="float: left; width: 270px;"><a href="#"
+											onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 58870)">电子邮箱<b></b></a>
+									</li>
+									<li class="dzpz" style="float: left; width: 270px;"><a href="#"
+											onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 58921)">电子凭证<b></b></a>
+									</li>
+									<li class="Campus-network clone" style="float: left; width: 270px;"><a href="#"
+											onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 42967)">校园网<b></b></a>
+									</li>
+									<li class="Library clone" style="float: left; width: 270px;"><a href="#"
+											onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 42968)">图书馆<b></b></a>
+									</li>
+									<li class="phone clone" style="float: left; width: 270px;"><a href="#"
+											onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 42969)">办公电话<b></b></a>
+									</li>
+									<li class="Calendar clone" style="float: left; width: 270px;"><a href="#"
+											onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 42970)">北邮校历<b></b></a>
+									</li>
+									<li class="Logistical-services clone" style="float: left; width: 270px;"><a href="#"
+											onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 42971)">后勤服务<b></b></a>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+
+
+					</div>
+
+				</div>
+			</div>
+			<div class="stastistical-part2">
+				<!-- section-seperator -->
+				<div class="section-seperator in-point">
+					<div class="container-template">
+						<h2 style="font-weight: normal;">
+							<i class="english" style="color: rgb(165, 242, 211);">Education &amp; Academic</i>
+							<p class="name">校园文化</p>
+							<span class="line" style="background: rgb(165, 242, 211);"></span>
+						</h2>
+					</div>
+					<div class="tuji clearfix">
+
+
+
+						<div class="tujiitem1 fl">
+							<img src="images/tujiimg1.png" alt="" width="100%" height="483"
+								onclick="_addDynClicks(&quot;wbimage&quot;, 1552820829, 42641)">
+							<div class="txtCover">那年，我们挥汗如雨的地方</div>
+						</div>
+
+
+
+
+						<ul class="tujiitem2 fl">
+
+							<li>
+
+
+								<img src="images/tujiimg2.png" alt="" width="100%" height="245">
+								<div class="txtCover">北邮校训石</div>
+							</li>
+							<li>
+
+
+								<img src="images/tujiimg3.png" alt="" width="100%" height="245">
+								<div class="txtCover">宿舍楼</div>
+							</li>
+
+
+							<li>
+
+
+								<img src="images/tujiimg4.png" alt="" width="100%" height="245">
+								<div class="txtCover">校园一角</div>
+							</li>
+							<li>
+
+
+								<img src="images/tujiimg5.png" alt="" width="100%" height="245">
+								<div class="txtCover"></div>
+							</li>
+
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="tips-part" id="tips-part">
+				<div class="container" style="position: relative; z-index: 200;">
+					<div class="innovatePoverty clearfix">
+						<div class="innovate fl">
+							<div class="titBox2 clearfix mar">
+								<ul class="educationNav fl">
+									<li class="active"><a href="#">创新创业</a><a class="moreicon22" href="#"><img alt=""
+												src="images/greenmore.png"></a></li>
+
+								</ul>
+							</div>
+							<ul class="notice1">
+								<li>
+									<a class="innovatePic fl" href="#"><img src="" alt=""></a>
+									<div class="innovateTxt fr">
+										<a href="#">华为全联接2021智能基座专场在北京邮电大学召开</a>
+										<p>华为全联接2021智能基座专场在北京邮电大学召开HUAWEI CONNECT（华为全联接）是华为面向全球ICT领域的行...</p>
+									</div>
+								</li>
+
+								<li>
+									<a class="innovatePic fl" href="#"><img src="" alt=""></a>
+									<div class="innovateTxt fr">
+										<a href="#">第六届雏雁计划立项宣讲会成功举办</a>
+										<p>第六届雏雁计划立项宣讲会成功举办为了激发低年级学生创新意识，训练创新思维，培养创新能力，叶培大创...</p>
+									</div>
+								</li>
+
+								<li>
+									<a class="innovatePic fl" href="#"><img src="" alt=""></a>
+									<div class="innovateTxt fr">
+										<a href="#">2021年北京高校大学生创新创业训练项目校际合作计...</a>
+										<p>2021年北京高校大学生创新创业训练项目校际合作计划定级（阶段）线上检查在我校顺利进行9月24日上午，20...</p>
+									</div>
+								</li>
+
+							</ul>
+							<script>
+								_showDynClickBatch(['dynclicks_u21_84537', 'dynclicks_u21_84536', 'dynclicks_u21_84535'], [84537, 84536, 84535],
+									"wbnews", 1552820829)
+							</script>
+
+						</div>
+
+						<div class="Poverty fr">
+							<div class="titBox2 clearfix mar">
+								<ul class="educationNav fl">
+									<li class="active" href="javascript:void(0)"
+										onmouseover="selectSwtich('',this,'bbb',0,'active')"><a
+											href="xywh/ddbf.htm">定点帮扶</a><b class="line2"></b><a class="moreicon22"
+											href="#"><img alt="" src="images/greenmore.png"></a></li>
+									<li href="javascript:void(0)" onmouseover="selectSwtich('',this,'bbb',1,'active')">
+										<a href="xywh/zyfw.htm">志愿服务</a><a class="moreicon22" href="#"><img alt=""
+												src="images/greenmore.png"></a></li>
+								</ul>
+
+							</div>
+							<div class="Poverty-content" id="bbb0">
+								<div class="PovertyBox clearfix">
+									<a href="#" class="PovertyPic fl"><img
+											src="./images/54F462C28BE4BD6624DCFD2C866_9A1C9B79_2B0D6.png"
+											alt=""><b></b></a>
+									<div class="PovertyTxt fr">
+										<a href="info/1093/84648.htm">北京邮电大学举办贵州省长顺县中小学教师专题培训</a>
+										<p>为全面落实党中央、国务院和教育部党组决策部署，进一步巩固拓展教育脱贫攻坚成果同乡村振兴有效衔接，持续深化教育帮扶，切实推动长顺县教育教学水平全面提高，打造一...
+										</p>
+									</div>
+								</div>
+								<dl class="title-list1" style="padding-top: 30px">
+
+									<dd>
+										<a href="#">北京邮电大学召开首批“青春黔行”研究生长顺服务团总结汇报会</a>
+										<b>10.29</b>
+									</dd>
+
+									<dd>
+										<a href="#">学校项目入选教育部首批服务乡村振兴创新实验培育项目</a>
+										<b>10.19</b>
+									</dd>
+
+									<dd>
+										<a href="#">学校举办贵州省黔南州“数字法治 智慧司法”专题培训</a>
+										<b>10.22</b>
+									</dd>
+								</dl>
+								<script>
+									_showDynClickBatch(['dynclicks_u22_84648', 'dynclicks_u22_84647', 'dynclicks_u22_84613',
+										'dynclicks_u22_84622'], [84648, 84647, 84613, 84622], "wbnews", 1552820829)
+								</script>
+
+							</div>
+							<div class="Poverty-content" id="bbb1" style="display: none;">
+								<div class="PovertyBox clearfix">
+									<a href="#" class="PovertyPic fl"><img
+											src="./images/C59D2847F4744715F35973F5F72_8B6E93AF_12680.jpg"
+											alt=""><b></b></a>
+									<div class="PovertyTxt fr">
+										<a href="#">北京邮电大学第十二届研究生支教团出征座谈会召开</a>
+										<p>7月2日下午，北京邮电大学第十二届研究生支教团出征座谈会在西土城校区学生活动中心召开。校党委副书记赵纪宁出席座谈会，第十二届研究生支教团全体成员参加座谈会。会...
+										</p>
+									</div>
+								</div>
+								<dl class="title-list1" style="padding-top: 30px">
+
+									<dd>
+										<a href="#">第二针新冠疫苗接种志愿服务工作顺利完成</a>
+										<b>04.28</b>
+									</dd>
+
+
+									<dd>
+										<a href="#">北京邮电大学“相约北京”测试活动志愿者团队获CCTV央视、北...</a>
+										<b>04.12</b>
+									</dd>
+
+
+									<dd>
+										<a href="#">八百余名志愿者完成新冠疫苗第一针接种志愿服务工作</a>
+										<b>03.30</b>
+									</dd>
+
+								</dl>
+								<script>
+									_showDynClickBatch(['dynclicks_u23_84323', 'dynclicks_u23_84147', 'dynclicks_u23_84047',
+										'dynclicks_u23_84023'], [84323, 84147, 84047, 84023], "wbnews", 1552820829)
+								</script>
+							</div>
+
+						</div>
+						<script type="text/javascript">
+							function selectSwtich(parentNodeID, selfObj, showContentPrefix, showContentIndex, showClassName) {
+								var tag;
+								if (parentNodeID == "") {
+									tag = selfObj.parentNode.getElementsByTagName("li");
+								} else {
+									tag = document.getElementById(parentNodeID).getElementsByTagName("li");
+								}
+								var taglength = tag.length;
+								for (i = 0; i < taglength; i++) {
+									tag[i].className = "";
+									if (document.getElementById(showContentPrefix + i) != null && document.getElementById(showContentPrefix +
+											i) != undefined) {
+										document.getElementById(showContentPrefix + i).style.display = "none";
+									}
+								}
+								selfObj.className = showClassName;
+								document.getElementById(showContentPrefix + showContentIndex).style.display = "block";
+
+							}
+						</script>
+					</div>
+				</div>
+				<div class="hotTopicBg"></div>
+			</div>
+			<div class="pageFooter">
+				<div class="container">
+					<div class="Linkentrance">
+						<ul class="clearfix">
+							<li class="Shortcutentrance">
+								<h2 class="footTit">快捷入口</h2>
+								<ul class="clearfix">
+									<li>
+										<a href="#" onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 42759)"
+											target="_blank">网站地图</a>
+										<a href="#" onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 42760)"
+											target="_blank">风光人文</a>
+										<a href="#" onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 42761)"
+											target="_blank">校内通讯录</a>
+									</li>
+									<li>
+										<a href="#" onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 42762)"
+											target="_blank">校友会</a>
+
+
+										<a href="#" onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 42763)"
+											target="_blank">基金会</a>
+
+
+										<a href="#" onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 43520)"
+											target="_blank">学术委员会</a>
+									</li>
+									<li>
+										<a href="#" onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 43521)"
+											target="_blank">学风建设</a>
+
+
+										<a href="#" onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 43519)"
+											target="_blank">旧版校主页</a>
+
+
+										<a href="#" onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 42756)"
+											target="_blank">学校地图</a>
+									</li>
+								</ul>
+							</li>
+							<li class="campus">
+								<h2 class="footTit">北邮校区</h2>
+								<p><a href="index.htm" onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 42941)"
+										target="_blank">海淀校区</a></p>
+								<p><a href="#" onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 42942)"
+										target="_blank">昌平校区</a></p>
+
+							</li>
+							<li class="position clearfix">
+								<b class="fl"><img alt="" src="images/footimg1.png"></b>
+								<p class="fl" style="margin-top: 36px;"> <a href="#"
+										onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 42965)"
+										target="_blank">贵州省</a>
+									<a href="#" onclick="_addDynClicks(&quot;wburl&quot;, 1552820829, 42966)"
+										target="_blank">长顺县</a>
+								</p>
+
+							</li>
+							<li class="footlogo">
+								<div class="footlogo">
+									<a href="">
+
+
+
+									</a><a href="#" title=""
+										onclick="_addDynClicks(&quot;wbimage&quot;, 1552820829, 42367)" target="_blank">
+										<img src="images/footlogo.png" alt="">
+									</a>
+
+
+
+
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="copyright">
+						<!-- 版权内容请在本组件"内容配置-版权"处填写 -->
+						<p style="text-align: center; color: rgb(255, 255, 255); font-size: 14px;">版权所有 © 北京邮电大学 <span
+								style="padding: 0px 18px;">|</span>&nbsp;地址:北京市西土城路10号 &nbsp;<span
+								style="padding: 0px 18px;">|</span>&nbsp;邮编:100876 &nbsp;<span
+								style="padding: 0px 18px;">|</span>&nbsp;<a href="https://beian.miit.gov.cn"
+								target="_blank" style="color: rgb(255, 255, 255);">京ICP备14033833号-1</a> &nbsp;<span
+								style="padding: 0px 18px;">|</span>京公网安备110402430070</p>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="rightFix" id="topBanner" style="display: none;">
+				<div class="close">
+					<a href="javascript:void(0)" id="close"><img src="images/close.png" alt=""></a>
+				</div>
+				<a href="#" onclick="_addDynClicks(&quot;wbimage&quot;, 1552820829, 48654)" class="ycztlink"
+					target="_blank">
+					<img src="images/ztrrg.png">
+				</a>
+
+				<script>
+					//点击a链接 关闭top-banner盒子
+					var close = document.getElementById("close");
+					var topbanner = document.getElementById("topBanner");
+					close.onclick = function fff() {
+						topBanner.className = "hide";
+
+					}
+				</script>
+
+				<ul>
+
+					<li class="weibo">
+						<div class="code1"><img src="images/erweima_56.jpg"
+								onclick="_addDynClicks(&quot;wbimage&quot;, 1552820829, 42372)" alt=""></div>
+					</li>
+
+
+
+					<li class="weixin">
+						<div class="code1"><img src="images/erweima_53.jpg"
+								onclick="_addDynClicks(&quot;wbimage&quot;, 1552820829, 42373)" alt=""></div>
+					</li>
+
+
+
+					<li class="phonelook">
+						<div class="code1"><img src="ejbanner/sjewmtxin.jpg"
+								onclick="_addDynClicks(&quot;wbimage&quot;, 1552820829, 43108)" alt=""></div>
+					</li>
+
+
+
+					<li id="backTop" style="height:30px; margin-bottom:0;">
+						<img src="images/topicon.png" onclick="_addDynClicks(&quot;wbimage&quot;, 1552820829, 43109)"
+							alt="">
+					</li>
+
+
+				</ul>
+
+			</div>
+
+			<style>
+				#adu30 {
+					z-index: 999999999999 !important;
+				}
+			</style>
+			<script type="text/javascript" src="./js/response.js"></script>
+			<script type="text/javascript" src="./js/waypoints.js"></script>
+			<script type="text/javascript" src="./js/module.js"></script>
+			<script src="./js/wow.min.js"></script>
+			<script src="./js/wySlider.min.js"></script>
+			<script src="./js/index.js"></script>
+			<script src="./js/slick.min.js"></script>
+			<script>
+				new WOW().init();
+			</script>
+			<script>
+				$(function() {
+					$(".js-silder").silder({
+						auto: true, //自动播放，传入任何可以转化为true的值都会自动轮播
+						speed: 200, //轮播图运动速度
+						sideCtrl: true, //是否需要侧边控制按钮
+						bottomCtrl: true, //是否需要底部控制按钮
+						defaultView: 0, //默认显示的索引
+						interval: 50000, //自动轮播的时间，以毫秒为单位，默认3000毫秒
+						activeClass: "active" //小的控制按钮激活的样式，不包括作用两边，默认active
+					});
+				});
+				$(".important-news .educationNav li").hover(function() {
+					$(this).addClass("active").siblings("li").removeClass("active");
+					var a = $(this).index();
+					$(".eduaction-list").eq(a).show().siblings(".eduaction-list").hide();
+				})
+				$(".innovate  li").hover(function() {
+					$(this).addClass("active").siblings("li").removeClass("active");
+					var a = $(this).index();
+					$(".notice1").eq(a).show().siblings(".notice1").hide();
+				})
+				$(".Poverty  li").hover(function() {
+					$(this).addClass("active").siblings("li").removeClass("active");
+					var a = $(this).index();
+					$(".Poverty-content").eq(a).show().siblings(".Poverty-content").hide();
+				})
+				//回到顶部
+				var backIcon = $("#backTop");
+				backIcon.click(function() {
+					$("html,body").animate({
+						scrollTop: 0
+					}, 500);
+				})
+				//右侧固定
+				$('.rightFix').hide();
+				$(window).scroll(function() {
+					//当window的scrolltop距离大于1时，go to
+					if ($(this).scrollTop() > 300) {
+						$('.rightFix').fadeIn();
+					} else {
+						$('.rightFix').fadeOut();
+					}
+				});
+
+				$(".hotTopic li a").hover(function() {
+					$(this).children(".cover3").fadeIn();
+				}, function() {
+					$(this).children(".cover3").fadeOut();
+				})
+				$(".base-left li").click(function() {
+					$(this).addClass("baseCur").siblings("li").removeClass("baseCur");
+					var j = $(this).index();
+					$(".base-right").eq(j).show().siblings(".base-right").hide();
+				})
+				$(".rightFix li").hover(function() {
+					$(this).addClass("active2");
+					$(this).children(".code1").fadeIn();
+				}, function() {
+					$(this).removeClass("active2");
+					$(this).children(".code1").fadeOut()
+				})
+
+				$(".sidebar").hover(function() {
+					<
+					!--setTimeout(function() {
+							-- >
+							$("body").animate(1000, function() {
+								$(this).addClass("hover-pushed")
+							}); <
+							!--
+						}, 200) -- >
+
+				}, function() {
+					$("body").removeClass("hover-pushed");
+				})
+				$(function() {
+					$('#slick1').slick({
+						dots: true,
+						autoplay: true
+					});
+					$('#slick2').slick({
+						dots: true,
+						autoplay: true
+					});
+					$(".menu li").hover(function() {
+						$(this).addClass("cur");
+						$(this).children(".erji").show();
+					}, function() {
+						$(this).removeClass("cur");
+						$(this).children(".erji").hide();
+					})
+					$('#slick4').slick({
+						dots: false,
+						autoplay: true,
+						arrows: false,
+						slidesToShow: 5,
+						slidesToScroll: 1,
+						touchMove: false,
+						draggable: false
+					});
+
+					$('#bannerslick2').slick({
+						infinite: true,
+						slidesToShow: 1,
+						slidesToScroll: 1,
+						autoplay: true,
+						centerMode: false,
+						arrows: true,
+						fade: true,
+						dots: true,
+						speed: 800,
+						autoplaySpeed: 5000,
+						customPaging: function(slider, i) {
+							return '<button>0' + (i + 1) + "</button>";
+						},
+						responsive: [{
+							breakpoint: 1000,
+							settings: {
+								fade: false,
+								speed: 300
+							}
+						}],
+					});
+					var tit = $("#bannerslick2 .slick-slide").children("p").html();
+					$(".bannertit a").html(tit);
+					$("#bannerslick2").on("afterChange", function(event, slick, currentSlide) {
+						var num = parseInt(slick.currentSlide);
+						var tit = $("#bannerslick2 .slick-slide").eq(num).children("p").html();
+						$(".bannertit a").html(tit);
+					});
+					$('#nav > li').hover(
+						function() {
+							$(this).find('a:first').addClass("hover");
+							var current_li = $(this),
+								targ = $(current_li).find('ul:first');
+							NavWaitSlide = setTimeout(function() {
+								if (!$(targ).is(':visible')) {
+									$(targ).slideDown(200);
+								}
+							}, 100)
+						},
+						function() {
+							clearTimeout(NavWaitSlide);
+							$(this).find('ul').hide();
+							$(this).find('a:first').removeClass("hover");
+						}
+					);
+					var srTarget;
+					$(".serbtnicon").click(function(e) {
+						srTarget = e.target;
+
+						$(".serbox").show();
+						$(".serbox").animate({
+							width: "170px"
+						});
+						$(this).hide();
+						//搜索框打开逻辑
+						var screenWidth = $(window).width();
+						if (screenWidth <= 1600) {
+							$(".right-link").addClass("ser-on");
+							$("#logoDiv").removeClass("logo-s");
+							$("#logoDiv").addClass("logo-ss");
+							var _width = document.body.clientWidth;
+							$("#logoDiv").css("width", _width - 240);
+						}
+
+					})
+					$(".serbox").click(function(e) {
+						srTarget = e.target;
+						//搜索框搜索事件
+					})
+					$("html").click(function(event) {
+						if (event.target != srTarget) {
+							$(".serbox").hide();
+							$(".serbox").animate({
+								width: "0"
+							});
+							$(".serbtnicon").show();
+							//搜索框关闭逻辑
+							var screenWidth = $(window).width();
+							if (screenWidth <= 1600) {
+								setTimeout(function() {
+									$(".right-link").removeClass("ser-on");
+								}, 300)
+								$("#logoDiv").removeClass("logo-ss");
+								$("#logoDiv").addClass("logo-s");
+								$("#logoDiv").css("width", "");
+							}
+						}
+					});
+
+
+				})
+			</script>
+
+
+
+
+	</body>
+</html>
